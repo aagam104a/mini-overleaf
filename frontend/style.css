@@ -1,0 +1,6 @@
+/* style.css */
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 14px; background:#f8f9fb; color:#111; }
+.container { max-width: 1000px; margin: 0 auto; }
+.controls { margin: 10px 0; }
+.controls button { margin-right: 8px; padding: 8px 12px; }
+#filename { padding:6px; width:160px; }

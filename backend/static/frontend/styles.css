@@ -1,0 +1,207 @@
+:root{
+  /* 60 / 30 / 10 palette */
+  --bg60: #ECEBF3;      /* Ghost White (60%) */
+  --surface30: #C7D6D5; /* Ash Grey (30%) */
+  --accent10: #C20114;  /* Brick Ember (10%) */
+
+  --ink: #0C120C;       /* Onyx */
+  --muted: #6D7275;     /* Dim Grey */
+
+  --border: 3px solid var(--ink);
+  --shadow: 6px 6px 0 var(--ink);
+  --radius: 12px;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  overflow: hidden;
+
+  /* Soft gradient background (60% base + subtle 10% accent tint) */
+  background:
+    radial-gradient(circle at 20% 10%, rgba(194, 1, 20, 0.10) 0 18%, transparent 19%),
+    radial-gradient(circle at 85% 25%, rgba(199, 214, 213, 0.55) 0 22%, transparent 23%),
+    radial-gradient(circle at 30% 90%, rgba(194, 1, 20, 0.08) 0 20%, transparent 21%),
+    linear-gradient(135deg, #ECEBF3 0%, #E7E6EF 45%, #ECEBF3 100%);
+}
+
+/* Top bar */
+.toolbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: var(--border);
+  background: var(--surface30);
+}
+
+.brand-title{
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* Controls */
+.controls{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button{
+  border: var(--border);
+  background: var(--bg60);
+  color: var(--ink);
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transform: translate(0,0);
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+
+button:hover{
+  transform: translate(-1px,-1px);
+}
+
+button:active{
+  transform: translate(3px,3px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* Accent rule (10%) */
+button.primary{
+  background: var(--accent10);
+  color: #fff;
+}
+
+button.secondary{
+  background: var(--bg60);
+  color: var(--ink);
+}
+
+select{
+  border: var(--border);
+  padding: 10px 10px;
+  border-radius: var(--radius);
+  font-weight: 900;
+  background: var(--bg60);
+  box-shadow: var(--shadow);
+}
+
+/* Status */
+.status{
+  display: flex;
+  align-items: center;
+}
+
+.pill{
+  border: var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  box-shadow: 3px 3px 0 var(--ink);
+  background: var(--bg60);
+  font-weight: 900;
+}
+
+.pill.ok{ background: rgba(199, 214, 213, 0.95); }
+.pill.busy{ background: rgba(194, 1, 20, 0.12); }
+.pill.bad{ background: rgba(194, 1, 20, 0.22); }
+
+/* Main layout - lifted so borders are fully visible */
+.main{
+  height: calc(100vh - 62px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+
+  /* Lift away from window edges */
+  padding: 16px 16px 22px;
+  margin-bottom: 10px;
+}
+
+/* Panels */
+.panel{
+  background: var(--surface30);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: var(--border);
+  background: var(--bg60);
+  font-weight: 900;
+}
+
+.panel-header .hint{
+  font-weight: 800;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--muted);
+}
+
+/* Editor + preview */
+.editor-wrap,
+.preview-wrap{
+  flex: 1;
+  min-height: 0;
+}
+
+/* CodeMirror overrides */
+.CodeMirror{
+  height: 100% !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  background: #fff;
+}
+
+.CodeMirror-gutters{
+  border-right: var(--border);
+  background: var(--bg60);
+}
+
+/* PDF */
+#pdfPreview{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+/* Errors */
+.error-panel{
+  border-top: var(--border);
+  background: #111;
+  color: #ffb3c7;
+  padding: 10px 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.hidden{ display: none; }
+
+/* Responsive */
+@media (max-width: 980px){
+  .main{
+    grid-template-columns: 1fr;
+  }
+}

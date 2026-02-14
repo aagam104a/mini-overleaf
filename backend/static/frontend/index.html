@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mini Overleaf</title>
+
+  <link rel="stylesheet" href="/static/styles.css">
+
+  <!-- CodeMirror -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/stex/stex.min.js"></script>
+</head>
+
+<body>
+  <div class="toolbar">
+    <div class="brand">
+      <div class="brand-title">MINI OVERLEAF</div>
+    </div>
+
+    <div class="controls">
+      <button id="compileBtn" class="primary" title="Compile PDF (Ctrl+Enter)">Compile PDF</button>
+      <button id="docxBtn" class="secondary" title="Export DOCX (Ctrl+S)">Export DOCX</button>
+
+      <select id="engine" title="Engine (UI only)">
+        <option value="xelatex">XeLaTeX</option>
+        <option value="pdflatex">pdfLaTeX</option>
+      </select>
+
+      <div class="status">
+        <span class="pill ok" id="statusPill">IDLE</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="panel">
+      <div class="panel-header">
+        <div>Editor</div>
+        <div class="hint">main.tex</div>
+      </div>
+      <div class="editor-wrap">
+        <textarea id="editor"></textarea>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <div>Preview</div>
+        <div class="hint">PDF output</div>
+      </div>
+      <div class="preview-wrap">
+        <iframe id="pdfPreview" title="PDF Preview"></iframe>
+      </div>
+      <div id="errorPanel" class="error-panel hidden"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
